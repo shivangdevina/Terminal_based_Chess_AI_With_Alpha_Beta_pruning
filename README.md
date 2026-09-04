@@ -47,7 +47,7 @@ Every rule you'd find in an official FIDE game is implemented:
 ### 🖥️ Cross-Platform Terminal UI
 - **Windows**: Uses Win32 `SetConsoleCursorPosition` for in-place cell updates
 - **macOS / Linux**: ANSI escape sequences (`ESC[y;xH`) for the same effect
-- The board is redrawn in-place (no flicker) via targeted cursor positioning — only changed squares are updated on human moves
+- The board is redrawn in-place (no flicker) via targeted cursor positioning — Only changed squares are updated on human moves
 
 ---
 
@@ -183,17 +183,17 @@ chessbot.exe        # Windows
 
 ## 🏗️ Technical Highlights
 
-- **Single-file design** — the entire engine is `game.cpp` (≈1200 lines). No build system, no headers, no dependencies.
-- **Compact board encoding** — pieces stored as signed `char`; sign encodes colour, magnitude encodes piece type. Allows `O(1)` colour checks: `piece < 0` = black, `piece > 0` = white.
+- **Single-file design** — The entire engine is `game.cpp` (≈1200 lines). No build system, no headers, no dependencies.
+- **Compact board encoding** — Pieces stored as signed `char`; sign encodes colour, magnitude encodes piece type. Allows `O(1)` colour checks: `piece < 0` = black, `piece > 0` = white.
 - **Lazy tree generation** — `PathNode` generates child nodes on demand inside each `AlphaBeta` call, then clears them immediately after. Memory stays bounded regardless of search depth.
-- **Move encoding** — each move is serialised as a 7-byte string: `[x1][y1][x2][y2][piece_moved][piece_captured][castling_flag]` plus optional promotion byte. This single string enables both display (algebraic notation) and full undo.
-- **Threefold repetition** — correctly implements FIDE rules including castling rights and en passant availability as part of position identity.
+- **Move encoding** — Each move is serialised as a 7-byte string: `[x1][y1][x2][y2][piece_moved][piece_captured][castling_flag]` plus optional promotion byte. This single string enables both display (algebraic notation) and full undo.
+- **Threefold repetition** — Correctly implements FIDE rules including castling rights and en passant availability as part of position identity.
 
 ---
 
 ## 👤 Author
 
-**Mauryavardhan Singh**  
+**Shivang Devina**  
 Built from scratch in C++17 — board representation, rules engine, terminal UI, and custom AI included.
 
 ---
